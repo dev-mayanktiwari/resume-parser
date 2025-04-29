@@ -27,3 +27,5 @@ export type Position = {
   job_details: string
   skills: string[]
 }
+
+
