@@ -5,7 +5,7 @@ import axios from "axios";
 // This is a mock implementation - replace with your actual API call
 
 const apiUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api/v1";
+  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3000/api/v1";
 export async function parseResume(resumeText: string): Promise<ResumeData> {
   const res = await axios.post(`${apiUrl}/parse/text`, {
     text: resumeText,
