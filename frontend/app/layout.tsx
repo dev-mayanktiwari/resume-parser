@@ -9,7 +9,6 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Resume Parser",
   description: "Parse your resume and get a structured, formatted version",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
