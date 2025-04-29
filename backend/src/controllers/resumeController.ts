@@ -7,6 +7,7 @@ import {
 } from "../constants/application";
 import httpError from "../utils/httpError";
 import { resumeParser } from "../utils/resumeParser";
+import { GetResumeTextSchema } from "../types/resumeSchema";
 
 export default {
   self: asyncErrorHandler(async (req: Request, res: Response) => {
@@ -17,15 +18,18 @@ export default {
 
   text: asyncErrorHandler(
     async (req: Request, res: Response, next: NextFunction) => {
-      const { text } = req.body;
-      if (!text) {
+      const safeparese = GetResumeTextSchema.safeParse(req.body);
+
+      if (!safeparese.success) {
         return httpError(
           next,
-          new Error("Text is required"),
+          new Error(safeparese.error.message),
           req,
           EErrorStatusCode.BAD_REQUEST
         );
       }
+
+      const text = safeparese.data.text;
 
       const extractedData = await resumeParser(text);
 

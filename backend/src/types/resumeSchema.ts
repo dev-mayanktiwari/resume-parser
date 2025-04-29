@@ -48,3 +48,7 @@ export const ResumeSchema = z.object({
     })
   ),
 });
+
+export const GetResumeTextSchema = z.object({
+  text: z.string().min(100, "Resume text must be at least 100 characters long"),
+});
